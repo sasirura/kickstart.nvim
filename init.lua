@@ -827,7 +827,7 @@ require('lazy').setup({
             group_index = 0,
           },
           { name = 'nvim_lsp' },
-          { name = 'supermaven' },
+          -- { name = 'supermaven' },
           { name = 'luasnip' },
           { name = 'path' },
         },
@@ -970,23 +970,23 @@ require('lazy').setup({
   },
 })
 
----@diagnostic disable-next-line: missing-fields
-local client = vim.lsp.start_client {
-  name = 'go-lsp',
-  cmd = { '/home/sasiruravihansa/personal/monkey-intepreter/lsp/main' },
-}
+-- ---@diagnostic disable-next-line: missing-fields
+-- local client = vim.lsp.start_client {
+--   name = 'go-lsp',
+--   cmd = { '/home/sasiruravihansa/personal/monkey-intepreter/lsp/main' },
+-- }
 
-if not client then
-  vim.notify "Hey, you didn't do the client thing good"
-  return
-end
+-- if not client then
+--   vim.notify "Hey, you didn't do the client thing good"
+--   return
+-- end
 
-vim.api.nvim_create_autocmd('FileType', {
-  pattern = 'markdown',
-  callback = function()
-    vim.lsp.buf_attach_client(0, client)
-  end,
-})
+-- vim.api.nvim_create_autocmd('FileType', {
+--   pattern = 'markdown',
+--   callback = function()
+--     vim.lsp.buf_attach_client(0, client)
+--   end,
+-- })
 
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et
