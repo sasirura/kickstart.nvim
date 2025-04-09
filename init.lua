@@ -152,7 +152,12 @@ vim.opt.splitbelow = true
 --  See `:help 'list'`
 --  and `:help 'listchars'`
 vim.opt.list = true
-vim.opt.listchars = { tab = '» ', trail = '·', nbsp = '␣' }
+vim.opt.listchars = {
+  tab = '  ',
+  trail = '·',
+  nbsp = '␣',
+  eol = '↵',
+}
 
 -- Preview substitutions live, as you type!
 vim.opt.inccommand = 'split'
@@ -398,7 +403,11 @@ require('lazy').setup({
         --     i = { ['<c-enter>'] = 'to_fuzzy_refine' },
         --   },
         -- },
-        -- pickers = {}
+        pickers = {
+          find_files = {
+            theme = 'ivy',
+          },
+        },
         extensions = {
           ['ui-select'] = {
             require('telescope.themes').get_dropdown(),
@@ -843,7 +852,7 @@ require('lazy').setup({
             group_index = 0,
           },
           { name = 'nvim_lsp' },
-          -- { name = 'supermaven' },
+          { name = 'supermaven' },
           { name = 'luasnip' },
           { name = 'path' },
         },
@@ -960,6 +969,7 @@ require('lazy').setup({
   -- require 'kickstart.plugins.nvim-go',
   -- require 'kickstart.plugins.supermaven',
   require 'kickstart.plugins.vim-fugitive',
+  require 'kickstart.plugins.present',
   -- NOTE: The import below can automatically add your own plugins, configuration, etc from `lua/custom/plugins/*.lua`
   --    This is the easiest way to modularize your config.
   --

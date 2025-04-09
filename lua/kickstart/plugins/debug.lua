@@ -81,6 +81,11 @@ return {
     local dap = require 'dap'
     local dapui = require 'dapui'
 
+    vim.fn.sign_define('DapBreakpoint', { text = '🛑', texthl = 'Error' })
+
+    -- Set log level for DAP
+    require('dap').set_log_level 'DEBUG'
+
     require('mason-nvim-dap').setup {
       -- Makes a best effort to setup the various debuggers with
       -- reasonable debug configurations
@@ -138,10 +143,19 @@ return {
 
     -- Install golang specific config
     require('dap-go').setup {
-      delve = {
-        -- On Windows delve must be run attached or it crashes.
-        -- See https://github.com/leoluz/nvim-dap-go/blob/main/README.md#configuring
-        detached = vim.fn.has 'win32' == 0,
+      dap_configurations = {
+        {
+          type = 'go',
+          name = 'Debug',
+          request = 'launch',
+          program = '${workspaceFolder}/cmd/server/main.go', -- Specify path to main Go file
+          mode = 'debug',
+        },
+        delve = {
+          -- On Windows delve must be run attached or it crashes.
+          -- See https://github.com/leoluz/nvim-dap-go/blob/main/README.md#configuring
+          path = 'dlv',
+        },
       },
     }
   end,
