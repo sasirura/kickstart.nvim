@@ -1,0 +1,1 @@
+/home/sasiru/.config/omarchy/current/theme/neovim.lua
